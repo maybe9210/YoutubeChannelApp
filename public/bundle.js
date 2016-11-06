@@ -58,9 +58,23 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
+	var _StateExample = __webpack_require__(175);
+
+	var _StateExample2 = _interopRequireDefault(_StateExample);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootElement = document.getElementById('root');
+
+	/*
+	ReactDOM.render(<App headerTitle = "Welcome!"
+						contentTitle = "5"
+						contentBody = "Welcome to example app"/>, rootElement);
+	*/
+
+	//ReactDOM.render(<StateExample />, rootElement);
+
+
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), rootElement);
 
 /***/ },
@@ -21446,13 +21460,63 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactAddonsUpdate = __webpack_require__(173);
+
+	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               import React from 'react';
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               import ReactDOM from 'react-dom';
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               import Header from './Header';
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               import Content from './Content';
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               import RandomNumber from './RandomNumber';
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               class App extends React.Component{
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	constructor(props){
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		super(props);
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		this.state = {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               			value : Math.round(Math.random() * 1000)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		};
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		this._updateValue = this._updateValue.bind(this);
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	}
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	_updateValue(randomValue){
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		this.setState({
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               			value: randomValue
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		});
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	}
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	render(){			
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		return(
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               			<div>
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               				<Header title = { this.props.headerTitle }/>
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               				<Content title = { this.props.contentTitle} 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               						 body = { this.props.contentBody}/>
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               				<RandomNumber number={this.state.value}
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               								onUpdate={this._updateValue}/>
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               			</div>
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               		);
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	}
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               }
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               App.defaultProps = {
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	headerTitle :  'Default headerTitle',
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	contentTitle : 'Default contentTitle',
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	contentBody: 'Default contentBody',
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               }
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               export default App;
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 	var App = function (_React$Component) {
 		_inherits(App, _React$Component);
@@ -21467,9 +21531,9 @@
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					'h1',
+					'div',
 					null,
-					'Hello React Skeleton '
+					_react2.default.createElement(Contacts, null)
 				);
 			}
 		}]);
@@ -21477,7 +21541,529 @@
 		return App;
 	}(_react2.default.Component);
 
+	var Contacts = function (_React$Component2) {
+		_inherits(Contacts, _React$Component2);
+
+		function Contacts(props) {
+			_classCallCheck(this, Contacts);
+
+			var _this2 = _possibleConstructorReturn(this, (Contacts.__proto__ || Object.getPrototypeOf(Contacts)).call(this, props));
+
+			_this2.state = {
+				contactData: [{ name: "Abet", phone: "010-0000-0001" }, { name: "Bbet", phone: "010-0000-0002" }, { name: "Cbet", phone: "010-0000-0003" }, { name: "Dbet", phone: "010-0000-0004" }],
+				selectedKey: -1,
+				selected: {
+					name: "",
+					phone: ""
+				}
+			};
+			return _this2;
+		}
+
+		_createClass(Contacts, [{
+			key: '_insertContact',
+			value: function _insertContact(name, phone) {
+				var newState = (0, _reactAddonsUpdate2.default)(this.state, {
+					contactData: {
+						$push: [{ "name": name, "phone": phone }]
+					}
+				});
+				this.setState(newState);
+			}
+		}, {
+			key: '_onSelect',
+			value: function _onSelect(key) {
+				if (key == this.state.selectedKey) {
+					console.log('key select cancelled');
+					this.setState({
+						selectedKey: -1,
+						selected: {
+							name: "",
+							phone: ""
+						}
+					});
+					return;
+				}
+
+				this.setState({
+					selectedKey: key,
+					selected: this.state.contactData[key]
+				});
+
+				console.log(key + ' is selecetd');
+			}
+		}, {
+			key: '_isSelected',
+			value: function _isSelected(key) {
+				if (this.state.selectedKey == key) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}, {
+			key: '_removeContact',
+			value: function _removeContact() {
+				if (this.state.selectedKey == -1) {
+					console.log('contact not selected');
+					return;
+				}
+
+				this.setState({
+					contactData: (0, _reactAddonsUpdate2.default)(this.state.contactData, {
+						$splice: [[this.state.selectedKey, 1]]
+					}),
+					selectedKey: -1
+				});
+			}
+		}, {
+			key: '_editContact',
+			value: function _editContact(name, phone) {
+				this.setState({
+					contactData: (0, _reactAddonsUpdate2.default)(this.state.contactData, _defineProperty({}, this.state.selectedKey, {
+						name: { $set: name },
+						phone: { $set: phone }
+					})),
+					selected: {
+						name: name,
+						phone: phone
+					}
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _this3 = this;
+
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Contacts'
+					),
+					_react2.default.createElement(
+						'ul',
+						null,
+						this.state.contactData.map(function (contact, i) {
+							return _react2.default.createElement(ContactsInfo, { name: contact.name,
+								phone: contact.phone,
+								key: i,
+								contactKey: i,
+								isSelected: _this3._isSelected.bind(_this3)(i),
+								onSelect: _this3._onSelect.bind(_this3)
+
+							});
+						})
+					),
+					_react2.default.createElement(ContactCreator, { onInsert: this._insertContact.bind(this) }),
+					_react2.default.createElement(ContactRemover, { onRemove: this._removeContact.bind(this) }),
+					_react2.default.createElement(ContactEditor, { onEdit: this._editContact.bind(this),
+						isSelected: this.state.selectedKey != -1,
+						contact: this.state.selected })
+				);
+			}
+		}]);
+
+		return Contacts;
+	}(_react2.default.Component);
+
+	var ContactsInfo = function (_React$Component3) {
+		_inherits(ContactsInfo, _React$Component3);
+
+		function ContactsInfo() {
+			_classCallCheck(this, ContactsInfo);
+
+			return _possibleConstructorReturn(this, (ContactsInfo.__proto__ || Object.getPrototypeOf(ContactsInfo)).apply(this, arguments));
+		}
+
+		_createClass(ContactsInfo, [{
+			key: 'shouldComponentUpdate',
+			value: function shouldComponentUpdate(nextProps, nextState) {
+				return JSON.stringify(nextProps) != JSON.stringify(this.props);
+			}
+		}, {
+			key: 'handleClick',
+			value: function handleClick() {
+				this.props.onSelect(this.props.contactKey);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				console.log('rendered: ' + this.props.name);
+				var getStyle = function getStyle(isSelect) {
+					if (!isSelect) return;
+					var style = {
+						fontWeight: 'bold',
+						backgroundColor: '#4efcd8'
+					};
+					return style;
+				};
+
+				return _react2.default.createElement(
+					'li',
+					{
+						style: getStyle(this.props.isSelected),
+						onClick: this.handleClick.bind(this) },
+					this.props.name,
+					' ',
+					this.props.phone
+				);
+			}
+		}]);
+
+		return ContactsInfo;
+	}(_react2.default.Component);
+
+	var ContactCreator = function (_React$Component4) {
+		_inherits(ContactCreator, _React$Component4);
+
+		function ContactCreator(props) {
+			_classCallCheck(this, ContactCreator);
+
+			var _this5 = _possibleConstructorReturn(this, (ContactCreator.__proto__ || Object.getPrototypeOf(ContactCreator)).call(this, props));
+
+			_this5.state = {
+				name: "",
+				phone: ""
+			};
+			return _this5;
+		}
+
+		_createClass(ContactCreator, [{
+			key: 'handleChange',
+			value: function handleChange(e) {
+				var nextState = {};
+				nextState[e.target.name] = e.target.value;
+				this.setState(nextState);
+			}
+		}, {
+			key: 'handleClick',
+			value: function handleClick() {
+				this.props.onInsert(this.state.name, this.state.phone);
+				this.setState({
+					name: "",
+					phone: ""
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'p',
+						null,
+						_react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'name', value: this.state.name, onChange: this.handleChange.bind(this) }),
+						_react2.default.createElement('input', { type: 'text', name: 'phone', placeholder: 'phone', value: this.state.phone, onChange: this.handleChange.bind(this) }),
+						_react2.default.createElement(
+							'button',
+							{ onClick: this.handleClick.bind(this) },
+							' Insert '
+						)
+					)
+				);
+			}
+		}]);
+
+		return ContactCreator;
+	}(_react2.default.Component);
+
+	var ContactRemover = function (_React$Component5) {
+		_inherits(ContactRemover, _React$Component5);
+
+		function ContactRemover() {
+			_classCallCheck(this, ContactRemover);
+
+			return _possibleConstructorReturn(this, (ContactRemover.__proto__ || Object.getPrototypeOf(ContactRemover)).apply(this, arguments));
+		}
+
+		_createClass(ContactRemover, [{
+			key: 'handleClick',
+			value: function handleClick() {
+				this.props.onRemove();
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'button',
+					{ onClick: this.handleClick.bind(this) },
+					'Remove selected contact'
+				);
+			}
+		}]);
+
+		return ContactRemover;
+	}(_react2.default.Component);
+
+	var ContactEditor = function (_React$Component6) {
+		_inherits(ContactEditor, _React$Component6);
+
+		function ContactEditor(props) {
+			_classCallCheck(this, ContactEditor);
+
+			var _this7 = _possibleConstructorReturn(this, (ContactEditor.__proto__ || Object.getPrototypeOf(ContactEditor)).call(this, props));
+
+			_this7.state = {
+				name: "",
+				phone: ""
+			};
+			return _this7;
+		}
+
+		_createClass(ContactEditor, [{
+			key: 'componentWillReceiveProps',
+			value: function componentWillReceiveProps(nextProps) {
+				this.setState({
+					name: nextProps.contact.name,
+					phone: nextProps.contact.phone
+				});
+			}
+		}, {
+			key: 'handleChange',
+			value: function handleChange(e) {
+				var nextState = {};
+				nextState[e.target.name] = e.target.value;
+				this.setState(nextState);
+			}
+		}, {
+			key: 'handleClick',
+			value: function handleClick() {
+				if (!this.props.isSelected) {
+					console.log('contact not selecetd');
+					return;
+				}
+				this.props.onEdit(this.state.name, this.state.phone);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'p',
+						null,
+						_react2.default.createElement('input', { type: 'text', name: 'name', placeholder: 'name', value: this.state.name, onChange: this.handleChange.bind(this) }),
+						_react2.default.createElement('input', { type: 'text', name: 'phone', placeholder: 'phone', value: this.state.phone, onChange: this.handleChange.bind(this) }),
+						_react2.default.createElement(
+							'button',
+							{ onClick: this.handleClick.bind(this) },
+							' Edit '
+						)
+					)
+				);
+			}
+		}]);
+
+		return ContactEditor;
+	}(_react2.default.Component);
+
 	exports.default = App;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(174);
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule update
+	 */
+
+	/* global hasOwnProperty:true */
+
+	'use strict';
+
+	var _prodInvariant = __webpack_require__(7),
+	    _assign = __webpack_require__(4);
+
+	var keyOf = __webpack_require__(25);
+	var invariant = __webpack_require__(8);
+	var hasOwnProperty = {}.hasOwnProperty;
+
+	function shallowCopy(x) {
+	  if (Array.isArray(x)) {
+	    return x.concat();
+	  } else if (x && typeof x === 'object') {
+	    return _assign(new x.constructor(), x);
+	  } else {
+	    return x;
+	  }
+	}
+
+	var COMMAND_PUSH = keyOf({ $push: null });
+	var COMMAND_UNSHIFT = keyOf({ $unshift: null });
+	var COMMAND_SPLICE = keyOf({ $splice: null });
+	var COMMAND_SET = keyOf({ $set: null });
+	var COMMAND_MERGE = keyOf({ $merge: null });
+	var COMMAND_APPLY = keyOf({ $apply: null });
+
+	var ALL_COMMANDS_LIST = [COMMAND_PUSH, COMMAND_UNSHIFT, COMMAND_SPLICE, COMMAND_SET, COMMAND_MERGE, COMMAND_APPLY];
+
+	var ALL_COMMANDS_SET = {};
+
+	ALL_COMMANDS_LIST.forEach(function (command) {
+	  ALL_COMMANDS_SET[command] = true;
+	});
+
+	function invariantArrayCase(value, spec, command) {
+	  !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected target of %s to be an array; got %s.', command, value) : _prodInvariant('1', command, value) : void 0;
+	  var specValue = spec[command];
+	  !Array.isArray(specValue) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array; got %s. Did you forget to wrap your parameter in an array?', command, specValue) : _prodInvariant('2', command, specValue) : void 0;
+	}
+
+	/**
+	 * Returns a updated shallow copy of an object without mutating the original.
+	 * See https://facebook.github.io/react/docs/update.html for details.
+	 */
+	function update(value, spec) {
+	  !(typeof spec === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): You provided a key path to update() that did not contain one of %s. Did you forget to include {%s: ...}?', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : _prodInvariant('3', ALL_COMMANDS_LIST.join(', '), COMMAND_SET) : void 0;
+
+	  if (hasOwnProperty.call(spec, COMMAND_SET)) {
+	    !(Object.keys(spec).length === 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Cannot have more than one key in an object with %s', COMMAND_SET) : _prodInvariant('4', COMMAND_SET) : void 0;
+
+	    return spec[COMMAND_SET];
+	  }
+
+	  var nextValue = shallowCopy(value);
+
+	  if (hasOwnProperty.call(spec, COMMAND_MERGE)) {
+	    var mergeObj = spec[COMMAND_MERGE];
+	    !(mergeObj && typeof mergeObj === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a spec of type \'object\'; got %s', COMMAND_MERGE, mergeObj) : _prodInvariant('5', COMMAND_MERGE, mergeObj) : void 0;
+	    !(nextValue && typeof nextValue === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): %s expects a target of type \'object\'; got %s', COMMAND_MERGE, nextValue) : _prodInvariant('6', COMMAND_MERGE, nextValue) : void 0;
+	    _assign(nextValue, spec[COMMAND_MERGE]);
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_PUSH)) {
+	    invariantArrayCase(value, spec, COMMAND_PUSH);
+	    spec[COMMAND_PUSH].forEach(function (item) {
+	      nextValue.push(item);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_UNSHIFT)) {
+	    invariantArrayCase(value, spec, COMMAND_UNSHIFT);
+	    spec[COMMAND_UNSHIFT].forEach(function (item) {
+	      nextValue.unshift(item);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_SPLICE)) {
+	    !Array.isArray(value) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s target to be an array; got %s', COMMAND_SPLICE, value) : _prodInvariant('7', COMMAND_SPLICE, value) : void 0;
+	    !Array.isArray(spec[COMMAND_SPLICE]) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
+	    spec[COMMAND_SPLICE].forEach(function (args) {
+	      !Array.isArray(args) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be an array of arrays; got %s. Did you forget to wrap your parameters in an array?', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : _prodInvariant('8', COMMAND_SPLICE, spec[COMMAND_SPLICE]) : void 0;
+	      nextValue.splice.apply(nextValue, args);
+	    });
+	  }
+
+	  if (hasOwnProperty.call(spec, COMMAND_APPLY)) {
+	    !(typeof spec[COMMAND_APPLY] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'update(): expected spec of %s to be a function; got %s.', COMMAND_APPLY, spec[COMMAND_APPLY]) : _prodInvariant('9', COMMAND_APPLY, spec[COMMAND_APPLY]) : void 0;
+	    nextValue = spec[COMMAND_APPLY](nextValue);
+	  }
+
+	  for (var k in spec) {
+	    if (!(ALL_COMMANDS_SET.hasOwnProperty(k) && ALL_COMMANDS_SET[k])) {
+	      nextValue[k] = update(value[k], spec[k]);
+	    }
+	  }
+
+	  return nextValue;
+	}
+
+	module.exports = update;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var StateExample = function (_React$Component) {
+		_inherits(StateExample, _React$Component);
+
+		function StateExample(props) {
+			_classCallCheck(this, StateExample);
+
+			var _this = _possibleConstructorReturn(this, (StateExample.__proto__ || Object.getPrototypeOf(StateExample)).call(this, props));
+
+			_this.state = {
+				header: "Header Initial state",
+				content: "Content Initial state"
+			};
+			return _this;
+		}
+
+		_createClass(StateExample, [{
+			key: "_updateHeader",
+			value: function _updateHeader(text) {
+				this.setState({
+					header: "Header has changed"
+				});
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						"h1",
+						null,
+						this.state.header
+					),
+					_react2.default.createElement(
+						"h2",
+						null,
+						this.state.content
+					),
+					_react2.default.createElement(
+						"button",
+						{ onClick: this._updateHeader.bind(this) },
+						" Update "
+					)
+				);
+			}
+		}]);
+
+		return StateExample;
+	}(_react2.default.Component);
+
+	exports.default = StateExample;
 
 /***/ }
 /******/ ]);
