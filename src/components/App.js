@@ -44,6 +44,7 @@ App.defaultProps = {
 export default App;
 */
 
+/*
 import React from 'react';
 import update from 'react-addons-update';
 
@@ -302,3 +303,81 @@ class ContactEditor extends React.Component{
 
 
 export default App;
+*/
+
+import React from 'react';
+
+/*
+class Hello extends React.Component{
+	render(){
+		return(
+			<div>
+				<input ref="myInput"></input>
+			</div>
+		)
+	}
+
+	componentDidMount(){
+		this.refs.myInput.value = "Hi, I used ref to do this";
+	}
+}
+*/
+
+/*
+class Hello extends React.Component{
+	render(){
+		return(
+			<div>
+				<input ref={ref => this.input = ref}></input>
+			</div>
+		)
+	}
+
+	componentDidMount(){
+		this.input.value = "i used ref to do this";
+	}
+}
+*/
+
+/*
+class Hello extends React.Component{
+	handleClick(){
+		this.textBox.input.value ='i used ref';
+	}
+
+	render(){
+		return(
+			<div>
+				<TextBox ref={ref=> this.textBox = ref}/>
+				<button onClick= {this.handleClick.bind(this)}>Click Me</button>
+			</div>
+		)
+	}
+}
+
+class TextBox extends React.Component{
+	render(){
+		return(
+			<input ref={ref=>this.input = ref}></input>
+		)
+	}
+}
+*/
+
+class Hello extends React.Component{
+	handleClick(){
+		this.input.value = "";
+		this.input.focus();
+	}
+
+	render(){
+		return(
+			<div>
+				<input ref={ref=>this.input = ref}/>
+				<button onClick = {this.handleClick.bind(this)}> Click Me</button>
+			</div>
+		);
+	}
+}
+
+export default Hello;

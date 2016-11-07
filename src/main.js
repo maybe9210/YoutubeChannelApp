@@ -14,5 +14,4 @@ ReactDOM.render(<App headerTitle = "Welcome!"
 
  //ReactDOM.render(<StateExample />, rootElement);
 
-
 ReactDOM.render(<App />, rootElement);
